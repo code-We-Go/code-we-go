@@ -69,7 +69,7 @@ const ProjectsPage = () => {
             Our Projects
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our portfolio of successful projects and see how we've helped businesses grow.
+            Explore our portfolio of successful projects and see how we&apos;ve helped businesses grow.
           </p>
         </motion.div>
 

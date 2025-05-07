@@ -40,7 +40,7 @@ const LatestProjects = () => {
             Latest Projects
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our recent work and see how we've helped businesses achieve their digital goals.
+            Explore our recent work and see how we&apos;ve helped businesses achieve their digital goals.
           </p>
         </motion.div>
 
