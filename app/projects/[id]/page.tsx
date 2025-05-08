@@ -1,9 +1,5 @@
-'use client';
-
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import ProjectCarousel from './ProjectCarousel';
 
 const projects = {
   'ecommerce-platform': {
@@ -37,21 +33,12 @@ const projects = {
   // Add other projects here...
 };
 
-const ProjectPage = ({ params }: { params: { id: string } }) => {
+export default function ProjectPage({ params }: { params: { id: string } }) {
   const project = projects[params.id as keyof typeof projects];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!project) {
     return <div>Project not found</div>;
   }
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -63,39 +50,7 @@ const ProjectPage = ({ params }: { params: { id: string } }) => {
           className="max-w-4xl mx-auto"
         >
           {/* Image Carousel */}
-          <div className="relative mb-8 rounded-xl overflow-hidden">
-            <div className="relative h-[400px]">
-              <Image
-                src={project.images[currentImageIndex]}
-                alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg"
-            >
-              <FaChevronLeft className="text-gray-800" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg"
-            >
-              <FaChevronRight className="text-gray-800" />
-            </button>
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-              {project.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`w-2 h-2 rounded-full ${
-                    index === currentImageIndex ? 'bg-white' : 'bg-white/50'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
+          <ProjectCarousel images={project.images} title={project.title} />
 
           {/* Project Details */}
           <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -143,6 +98,4 @@ const ProjectPage = ({ params }: { params: { id: string } }) => {
       </div>
     </div>
   );
-};
-
-export default ProjectPage; 
+} 
