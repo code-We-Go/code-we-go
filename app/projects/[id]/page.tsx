@@ -33,7 +33,7 @@ const projects = {
   // Add other projects here...
 };
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
+export default async function ProjectPage({ params }: { params: { id: string } }) {
   const project = projects[params.id as keyof typeof projects];
 
   if (!project) {
