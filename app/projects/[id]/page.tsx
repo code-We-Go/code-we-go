@@ -33,8 +33,8 @@ const projects = {
   // Add other projects here...
 };
 
-export default async function ProjectPage({ params }: { params: { id: string } }) {
-  const project = projects[params.id as keyof typeof projects];
+export default async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
+  const project = projects[(await params).id as keyof typeof projects];
 
   if (!project) {
     return <div>Project not found</div>;
